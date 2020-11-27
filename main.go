@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	dotenv_generator "dotenv-generator"
 	"flag"
 	"log"
 	"os"
@@ -39,7 +38,7 @@ func main() {
 		txt, temp string
 		index     int
 		parts     []string
-		varList   = make(dotenv_generator.Environments, 0, 1)
+		varList   = make(Environments, 0, 1)
 	)
 	for scanner.Scan() {
 		txt = scanner.Text()
@@ -59,7 +58,7 @@ func main() {
 			for i, it := range parts {
 				parts[i] = strings.Trim(it, " \"")
 			}
-			varList = append(varList, &dotenv_generator.Environment{
+			varList = append(varList, &Environment{
 				Name:  parts[0],
 				Value: parts[1],
 			})
@@ -68,7 +67,7 @@ func main() {
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-	err = dotenv_generator.UpdateEnvironments(varList)
+	err = UpdateEnvironments(varList)
 	if err != nil {
 		log.Printf("save file error: %s\n", err)
 		os.Exit(1)

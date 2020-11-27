@@ -1,4 +1,4 @@
-package dotenv_generator
+package main
 
 func (x Environments) Len() int {
 	return len(x)

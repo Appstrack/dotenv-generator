@@ -1,4 +1,4 @@
-package dotenv_generator
+package main
 
 import (
 	"fmt"
